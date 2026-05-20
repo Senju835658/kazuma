@@ -1,10 +1,10 @@
-import { Resend } from "resend"
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { getResend } from "@/lib/resend"
 
 export async function POST(request: NextRequest) {
+  const resend = getResend()
   try {
     const { subject, message } = await request.json()
 
